@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	
+	<id>default</id>
+	<!--可以打包的文件格式-->
+	<formats>
+	    <!--<format>dir</format>-->
+		<!--<format>tar.gz</format>-->
+		<format>zip</format>
+	</formats>
+	
+	<dependencySets>
+		<dependencySet>
+			<!--当前项目构件是否包含在这个依赖集合里-->
+			<useProjectArtifact>true</useProjectArtifact>
+            <outputDirectory>lib</outputDirectory><!-- 将scope为runtime的依赖包打包到lib目录下。 -->
+            <unpack>false</unpack>
+		</dependencySet>
+	</dependencySets>
+	
+	<fileSets>
+		<fileSet>
+			<directory>${basedir}</directory>
+			<outputDirectory></outputDirectory>
+			<filtered>true</filtered>
+			<includes>
+				<include>README.md</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.scriptSourceDirectory}</directory>
+			<outputDirectory>bin</outputDirectory>
+			<filtered>true</filtered>
+			<fileMode>0744</fileMode>
+			<includes>
+				<include>*.sh</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>conf</outputDirectory>
+			<includes>
+				<include>*</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+</assembly>
