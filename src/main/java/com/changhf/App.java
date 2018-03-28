@@ -11,6 +11,6 @@ public class App
         System.out.println( "Hello World!" );
     }
     public void test(){
-
+        System.out.println("");
     }
 }
